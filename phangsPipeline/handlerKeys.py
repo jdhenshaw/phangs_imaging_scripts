@@ -3188,42 +3188,42 @@ class KeyHandler:
             # Just create the first directory
             if not os.path.isdir(self._ms_roots[0]):
                 logging.info("Creating MS root directory: " + self._ms_roots[0])
-                os.makedirs(self._ms_roots[0])
+                os.makedirs(self._ms_roots[0], exist_ok=True)
 
         if imaging:
             if not os.path.isdir(self._imaging_root):
                 # logging.info("Missing imaging root directory.")
                 logging.info("Creating imaging root directory: " + self._imaging_root)
                 # return(False)
-                os.makedirs(self._imaging_root)
+                os.makedirs(self._imaging_root, exist_ok=True)
 
         if postprocess:
             if not os.path.isdir(self._postprocess_root):
                 # logging.info("Missing postprocess root directory.")
                 logging.info("Creating postprocess root directory: " + self._postprocess_root)
                 # return(False)
-                os.makedirs(self._postprocess_root)
+                os.makedirs(self._postprocess_root, exist_ok=True)
 
         if derived:
             if not os.path.isdir(self._derived_root):
                 # logging.info("Missing derived root directory.")
                 logging.info("Creating derived root directory: " + self._derived_root)
                 # return(False)
-                os.makedirs(self._derived_root)
+                os.makedirs(self._derived_root, exist_ok=True)
 
         if release:
             if not os.path.isdir(self._release_root):
                 # logging.info("Missing release root directory.")
                 logging.info("Creating release root directory: " + self._release_root)
                 # return(False)
-                os.makedirs(self._release_root)
+                os.makedirs(self._release_root, exist_ok=True)
 
         missing_dirs = self.check_dir_existence(imaging=imaging, postprocess=postprocess, derived=derived,
                                                 release=release)
         made_directories = 0
         for this_missing_dir in missing_dirs:
             made_directories += 1
-            os.makedirs(this_missing_dir)
+            os.makedirs(this_missing_dir, exist_ok=True)
 
         missing_dirs = self.check_dir_existence(imaging=imaging, postprocess=postprocess, derived=derived,
                                                 release=release)
