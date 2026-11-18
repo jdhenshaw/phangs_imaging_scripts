@@ -1152,6 +1152,7 @@ if casa_enabled:
                 convergence_fracflux=0.01,
                 convergence_noise_z_threshold=None,
                 max_loops=20,
+                threshold_value=4.0,
                 backup=True,
                 gather_chunks_into_cube=False,
                 remove_chunks=False,
@@ -1160,6 +1161,9 @@ if casa_enabled:
             Run a multiscale clean loop to convergence. This task
             currently hardcodes some of the PHANGS-ALMA best choice
             parameters.
+
+            threshold_value sets the depth of the multiscale clean in
+            units of the noise (threshold_type 'snr'). Default is 4.0.
 
             Set backup to True will make a copy of the multiscale cleaned
             image as {imagename}_multiscale.image
@@ -1220,7 +1224,7 @@ if casa_enabled:
                             cycleniter_saturation_value=1000,
                             cycleniter_other_input=None,
                             threshold_type='snr',
-                            threshold_value=4.0,
+                            threshold_value=threshold_value,
                             min_loops=3,
                             max_loops=max_loops,
                             max_total_niter=None,
