@@ -465,7 +465,7 @@ def common_grid_for_mosaic(
         slice_out = tuple([slice(imin, imax) for (imin, imax) in bounds])
 
         # Slice out the part of the WCS we care about, and do the reprojection
-        indiv_w = w[:, *slice_out]
+        indiv_w = w[(slice(None),) + tuple(slice_out)]
 
         cube = reproject_to_other_wcs(
             cube=cube,
@@ -934,10 +934,10 @@ def mosaic_aligned_data(
                     weight_idx = weightfile_cubes[cube_idx]
 
                     # For the slice this cube corresponds to, calculate weighted sum and weight
-                    sum_hdu_idx[*slice_idx] += (
+                    sum_hdu_idx[tuple(slice_idx)] += (
                         flux_idx.unitless_filled_data[chan] * weight_idx.unitless_filled_data[chan]
                     )
-                    weight_hdu_idx[*slice_idx] += weight_idx.unitless_filled_data[chan]
+                    weight_hdu_idx[tuple(slice_idx)] += weight_idx.unitless_filled_data[chan]
 
                 # Put NaNs back in
                 sum_hdu_idx[sum_hdu_idx == 0] = np.nan

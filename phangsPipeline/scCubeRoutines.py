@@ -717,7 +717,7 @@ def trim_cube(
         axis_slices.append(slice(i_min, i_max + 1))
 
     # Slice down the cube
-    cube = cube[*axis_slices]
+    cube = cube[tuple(axis_slices)]
 
     # Do a final check against dtype
     cube_final_dtype = cube.unmasked_data[0, 0, 0].dtype
